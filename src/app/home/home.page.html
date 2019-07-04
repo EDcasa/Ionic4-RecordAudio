@@ -20,18 +20,10 @@
       <p>{{audio.filename}}</p>
       <button ion-button clear item-end large (click)="playAudio(audio.filename, i)"><ion-icon name="play"></ion-icon></button>
     </ion-item>
+    <ion-item *ngFor="let audio of audioList; index as i;">
+      <audio controls (click)="playAudio(audio.filename, i)">
+        <source [src]="audio" type="mp4">
+      </audio>
+    </ion-item>
   </ion-list>
-
-  <ion-list>
-  <audio-track>
-    <ion-item>  
-      <ion-thumbnail item-left>
-        <ion-audio-play dark [audioTrack]="audio"><ion-spinner></ion-spinner></ion-audio-play>  
-      </ion-thumbnail>
-      <div class="item">
-        <ion-audio-progress-bar display-time></ion-audio-progress-bar>
-      </div>
-    </ion-item>    
-  </audio-track>
-</ion-list>
 </ion-content>
