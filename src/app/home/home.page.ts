@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, Platform } from '@ionic/angular';
 import { Media, MediaObject } from '@ionic-native/media/ngx';
 import { File } from '@ionic-native/file/ngx';
@@ -10,11 +10,13 @@ import { File } from '@ionic-native/file/ngx';
 })
 export class HomePage {
 
+  @ViewChild('myAudio') myAudio: any;
   recording: boolean = false;
   filePath: string;
   fileName: string;
   audio: MediaObject;
   audioList: any[] = [];
+  
 
   constructor(public navCtrl: NavController,
     private media: Media,
@@ -56,6 +58,8 @@ export class HomePage {
     }
 
     playAudio(file,idx) {
+      console.log("audio",this.myAudio);
+      console.log("audio other", file)
       if (this.platform.is('ios')) {
         this.filePath = this.file.documentsDirectory.replace(/file:\/\//g, '') + file;
         this.audio = this.media.create(this.filePath);
